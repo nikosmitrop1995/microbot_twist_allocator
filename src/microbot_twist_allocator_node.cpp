@@ -22,6 +22,15 @@ class TwistAllocator : public rclcpp::Node
     {
       RCLCPP_INFO(this->get_logger(), "Linear Velocity on x-axis: %f", msg->linear.x);
       RCLCPP_INFO(this->get_logger(), "Angular Velocity on yaw: %f", msg->angular.z);
+
+      // Left wheel velocity
+      // υL = (2 * ux + ω*L)/(2*R)
+      // Right wheel velocity
+      // υR = (2 * ux - ω*L)/(2*R)
+      // Where ux is linear.x
+      // ω is angular.z
+      // L is the distance between the wheels
+      // R is the radius of the wheel
     }
     rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr subscription_;
 
