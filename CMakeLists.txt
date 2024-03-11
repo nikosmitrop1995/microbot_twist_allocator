@@ -7,9 +7,17 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+
+add_executable(microbot_twist_allocator_node src/microbot_twist_allocator_node.cpp)
+
+ament_target_dependencies(microbot_twist_allocator_node rclcpp geometry_msgs)
+
+install(TARGETS
+  microbot_twist_allocator_node
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
